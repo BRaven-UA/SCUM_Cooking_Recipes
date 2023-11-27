@@ -1,0 +1,6 @@
+.import/
+.mono/
+addons/
+**.import
+**.translation
+/textures.xcf

@@ -1,0 +1,56 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "DB",
+"language": "GDScript",
+"path": "res://data_base.gd"
+} ]
+_global_script_class_icons={
+"DB": ""
+}
+
+[application]
+
+config/name="SCUM Cooking Recipes"
+run/main_scene="res://main.tscn"
+run/low_processor_mode=true
+config/icon="res://icon.png"
+
+[debug]
+
+settings/fps/force_fps=10
+
+[display]
+
+window/size/width=1600
+window/size/height=1000
+window/size/test_width=1400
+window/size/test_height=700
+window/energy_saving/keep_screen_on=false
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/clear_2d_preview/plugin.cfg", "res://addons/editor_tree_tweaks/plugin.cfg" )
+
+[gui]
+
+theme/custom="res://theme.tres"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+environment/default_clear_color=Color( 0.105882, 0.105882, 0.105882, 1 )

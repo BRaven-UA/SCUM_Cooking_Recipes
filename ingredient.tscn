@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ingredient.gd" type="Script" id=1]
+[ext_resource path="res://ingredient_bg.tres" type="Texture" id=2]
+
+[node name="Ingredient" type="TextureProgress"]
+margin_right = 82.0
+margin_bottom = 83.0
+max_value = 0.0
+step = 0.01
+allow_greater = true
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+script = ExtResource( 1 )
