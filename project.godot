@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Resource",
-"class": "DB",
-"language": "GDScript",
-"path": "res://data_base.gd"
-} ]
-_global_script_class_icons={
-"DB": ""
-}
-
 [application]
 
 config/name="SCUM Cooking Recipes"
@@ -25,9 +15,17 @@ run/main_scene="res://main.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
 
+[autoload]
+
+DB="*res://data_base.gd"
+
 [debug]
 
 settings/fps/force_fps=10
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
 
 [display]
 
