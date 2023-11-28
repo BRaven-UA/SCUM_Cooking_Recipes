@@ -3,55 +3,65 @@ extends Control
 signal filter_changed(ingredients)
 
 const RECIPE_TEMPLATE := preload("res://recipe.tscn")
+const SELECTION_TEMPLATE := preload("res://ingredient_selection.tscn")
 
-var _ingredients: Array
-var _selected_ingredient: Dictionary
-onready var _line_edit = $LineEdit
-onready var _found_list = $LineEdit/FoundList
-onready var _amount_box = $LineEdit/Amount
-onready var _container = $ScrollContainer/Recipes
+var _current_selection: Control
+onready var _recipes = $RightSide/Recipes
+onready var _available_ingredients = $Ingredients
+onready var _found_list = $FoundList
 
 
 func _ready() -> void:
-	_line_edit.connect("text_changed", self, "_on_search_text_changed")
 	_found_list.connect("item_selected", self, "_on_search_item_selected")
-	_amount_box.connect("value_changed", self, "_on_amount_value_changed")
 	
 	for data in DB.RECIPES:
 		var recipe = RECIPE_TEMPLATE.instance()
-		_container.add_child(recipe, true)
+		_recipes.add_child(recipe, true)
 		recipe.activate(data)
 		connect("filter_changed", recipe, "_on_main_filter_changed")
 		
 		for ingredient in data[DB.INGREDIENTS]:
-			if not _ingredients.has(ingredient):
-				_ingredients.append(ingredient)
+			if not DB.ALL_INGREDIENTS.has(ingredient):
+				DB.ALL_INGREDIENTS.append(ingredient)
+	
+	_update_available()
 
-func _on_search_text_changed(text: String):
-	_found_list.clear()
-	var list_index := 0
+func _update_available():
+	var empty_selection: Control
+	for node in _available_ingredients.get_children():
+		if node.ingredient.empty():
+			if empty_selection:
+				node.hide()
+			else:
+				empty_selection = node
+	if empty_selection == null:
+		var selection = SELECTION_TEMPLATE.instance()
+		selection.connect("filter_changed", self, "_on_filter_changed", [selection])
+		_available_ingredients.add_child(selection, true)
+
+func _on_filter_changed(text: String, selection: Control):
+	_found_list.hide()
 	if text:
+		_current_selection = selection
+		var list_index := 0
+		_found_list.clear()
 		var lower_text = text.to_lower()
-		for ingredient in _ingredients:
+		for ingredient in DB.ALL_INGREDIENTS:
 			if lower_text in ingredient[DB.NAME].to_lower():
 				_found_list.add_item(ingredient[DB.NAME], DB.ATLAS)
 				_found_list.set_item_icon_region(list_index, ingredient[DB.REGION])
+				_found_list.set_item_tooltip_enabled(list_index, false)
 				_found_list.set_item_metadata(list_index, ingredient)
 				list_index += 1
-	_found_list.sort_items_by_text()
-	_found_list.visible = list_index > 0
+		_found_list.sort_items_by_text()
+		_found_list.rect_global_position = _current_selection.rect_global_position + Vector2(0, _current_selection.rect_size.y)
+		_found_list.visible = list_index > 0
+	else:
+		_current_selection = null
+		selection.set_ingredient({})
+		_update_available()
 
 func _on_search_item_selected(index: int):
 	_found_list.hide()
-	_line_edit.text = _found_list.get_item_text(index)
-	_line_edit.caret_position = _line_edit.text.length()
-	_selected_ingredient = _found_list.get_item_metadata(index)
-	_amount_box.step = 0.1 if _selected_ingredient.get(DB.UNIT, DB.PIECES) == DB.LITERS else 1.0
-	_amount_box.value = 1
-
-func _on_amount_value_changed(amount: float):
-	if _selected_ingredient:
-		_selected_ingredient[DB.AVAILABLE] = amount
-		_selected_ingredient[DB.USED] = 0.0
-		DB.emit_signal("ingredient_changed", _selected_ingredient)
-		emit_signal("filter_changed", [_selected_ingredient])
+	_current_selection.set_ingredient(_found_list.get_item_metadata(index))
+	_update_available()

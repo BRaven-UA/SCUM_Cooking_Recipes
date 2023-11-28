@@ -1,6 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=3 format=2]
 
 [ext_resource path="res://default_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://empty_stylebox.tres" type="StyleBox" id=2]
 
 [resource]
 default_font = ExtResource( 1 )
+LineEdit/constants/minimum_spaces = 0
+LineEdit/styles/focus = ExtResource( 2 )
+LineEdit/styles/normal = ExtResource( 2 )
+LineEdit/styles/read_only = ExtResource( 2 )
