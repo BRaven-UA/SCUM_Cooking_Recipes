@@ -19,14 +19,13 @@ func _draw() -> void:
 func activate(data: Dictionary, amount: float):
 	_data = data
 	max_value = amount
-	_data[DB.REGION] = DB.get_icon_region(_data[DB.ICON])
 	update()
 
-func update():
-	value = min(_data.get(DB.AVAILABLE, 0) - _data.get(DB.USED, 0), max_value)
+func update(ingredient := _data):
+	value = min(ingredient.get(DB.AVAILABLE, 0) - ingredient.get(DB.USED, 0), max_value)
 	if value > 0:
 #		_data[DB.USED] = _data.get(DB.USED, 0) + value
-		_data[DB.USED] += value
+		ingredient[DB.USED] += value
 #		tint_progress = Color.yellow if value < max_value else Color.green
 		tint_progress = Color.green
 	else:
@@ -36,3 +35,5 @@ func update():
 func _on_ingredient_changed(ingredient: Dictionary):
 	if ingredient == _data:
 		update()
+	elif ingredient in _data.get(DB.GROUP, []):
+		update(ingredient)

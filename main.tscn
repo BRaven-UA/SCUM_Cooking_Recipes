@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
+[ext_resource path="res://huge_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://panel_stylebox.tres" type="StyleBox" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+anti_aliasing = false
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -9,41 +20,92 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="Ingredients" type="HBoxContainer" parent="."]
+[node name="TopSide" type="Panel" parent="."]
 anchor_right = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
+grow_horizontal = 2
+rect_min_size = Vector2( 0, 123 )
 mouse_filter = 2
-custom_constants/separation = 10
+custom_styles/panel = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="TopSide"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 30.0
+grow_vertical = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Ingredients Filter:"
+valign = 1
+max_lines_visible = 1
+
+[node name="Ingredients" type="HBoxContainer" parent="TopSide"]
+anchor_left = 0.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 20.0
+margin_right = -140.0
+margin_bottom = -20.0
+grow_vertical = 2
+mouse_filter = 2
+custom_constants/separation = 25
 alignment = 1
 
 [node name="LeftSide" type="ScrollContainer" parent="."]
 anchor_top = 0.2
 anchor_bottom = 1.0
 margin_left = 20.0
+margin_top = -2.08616e-06
+margin_right = 20.0
 margin_bottom = -20.0
 scroll_horizontal_enabled = false
 
 [node name="Books" type="VBoxContainer" parent="LeftSide"]
-margin_right = 12.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="RightSide" type="ScrollContainer" parent="."]
+[node name="RightSide" type="Panel" parent="."]
 anchor_left = 1.0
-anchor_top = 0.2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = -1246.0
+margin_top = 130.0
 grow_horizontal = 0
+rect_min_size = Vector2( 0, 123 )
+mouse_filter = 2
+custom_styles/panel = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="RightSide"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 5.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+text = "Recipes:"
+valign = 1
+max_lines_visible = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 55.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 0
+custom_styles/bg = SubResource( 1 )
 scroll_horizontal_enabled = false
 
-[node name="Recipes" type="VBoxContainer" parent="RightSide"]
-margin_right = 12.0
+[node name="Recipes" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 1224.0
+margin_bottom = 503.0
 mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="FoundList" type="ItemList" parent="."]
 visible = false

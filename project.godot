@@ -21,7 +21,7 @@ DB="*res://data_base.gd"
 
 [debug]
 
-settings/fps/force_fps=10
+settings/fps/force_fps=30
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false

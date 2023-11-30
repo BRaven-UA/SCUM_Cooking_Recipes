@@ -4,6 +4,7 @@
 [ext_resource path="res://ingredient_bg.tres" type="Texture" id=3]
 
 [node name="IngredientSelection" type="TextureRect"]
+self_modulate = Color( 1, 1, 0, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( -513, -242 )
@@ -15,6 +16,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
+margin_right = 18.0
 grow_horizontal = 2
 grow_vertical = 0
 custom_constants/minimum_spaces = 3
@@ -23,15 +25,17 @@ context_menu_enabled = false
 virtual_keyboard_enabled = false
 clear_button_enabled = true
 shortcut_keys_enabled = false
-placeholder_text = "Enter name"
+placeholder_text = "Enter name    "
 caret_blink = true
 
 [node name="Amount" type="SpinBox" parent="."]
 visible = false
 anchor_right = 1.0
+margin_right = -13.0
 margin_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 0
+rect_scale = Vector2( 1.5, 1.5 )
 max_value = 999.0
 step = 0.1
 allow_greater = true
