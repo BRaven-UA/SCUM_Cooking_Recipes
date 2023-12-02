@@ -60,6 +60,7 @@ margin_bottom = -20.0
 scroll_horizontal_enabled = false
 
 [node name="Books" type="VBoxContainer" parent="LeftSide"]
+margin_right = 12.0
 mouse_filter = 2
 size_flags_horizontal = 3
 

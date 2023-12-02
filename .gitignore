@@ -4,3 +4,4 @@ addons/
 **.import
 **.translation
 /textures.xcf
+/bin
