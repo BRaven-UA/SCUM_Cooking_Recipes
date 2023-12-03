@@ -4,7 +4,7 @@ const INGREDIENT_TEMPLATE := preload("res://ingredient.tscn")
 
 var _data: Dictionary
 var _ingredients_and_groups: Array
-onready var _container = $Ingredients
+onready var _container = $ScrollContainer/Ingredients
 
 
 func activate(data: Dictionary):
@@ -21,14 +21,14 @@ func activate(data: Dictionary):
 		if index == _data[DB.OPTIONAL]:
 			ingredient.size_flags_horizontal = SIZE_EXPAND + SIZE_SHRINK_END
 
-func _on_main_filter_changed(ingredients: Array):
+func _on_filter_changed(books: Array, ingredients: Array):
 #	visible = ingredients.empty()
-	if ingredients.empty():
+	if ingredients.empty() and books[_data[DB.COOKBOOK]]:
 		show()
 		return
 	else:
 		for ingredient in ingredients:
-			if ingredient in _ingredients_and_groups:
+			if ingredient in _ingredients_and_groups and books[_data[DB.COOKBOOK]]:
 				visible = true
 				return
 	hide()

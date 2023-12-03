@@ -1,17 +1,91 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
+[ext_resource path="res://textures.png" type="Texture" id=3]
 [ext_resource path="res://huge_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://panel_stylebox.tres" type="StyleBox" id=6]
 
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 1, 1, 0, 0.498039 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0.784314, 0, 0.498039 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.729412, 0, 0, 0.498039 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 320, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 384, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 448, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 512, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 576, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 640, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 704, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 768, 512, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 832, 512, 64, 64 )
+
 [sub_resource type="StyleBoxFlat" id=1]
-draw_center = false
+bg_color = Color( 0.0431373, 0.12549, 0.12549, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+border_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 anti_aliasing = false
 
 [node name="Main" type="Control"]
@@ -33,7 +107,7 @@ anchor_bottom = 0.5
 margin_left = 30.0
 grow_vertical = 2
 custom_fonts/font = ExtResource( 5 )
-text = "Ingredients Filter:"
+text = "Ingredients:"
 valign = 1
 max_lines_visible = 1
 
@@ -50,26 +124,298 @@ mouse_filter = 2
 custom_constants/separation = 25
 alignment = 1
 
-[node name="LeftSide" type="ScrollContainer" parent="."]
-anchor_top = 0.2
+[node name="LeftSide" type="Panel" parent="."]
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = -2.08616e-06
-margin_right = 20.0
-margin_bottom = -20.0
-scroll_horizontal_enabled = false
+margin_top = 127.0
+margin_right = 150.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 6 )
 
-[node name="Books" type="VBoxContainer" parent="LeftSide"]
-margin_right = 12.0
+[node name="Label" type="Label" parent="LeftSide"]
+anchor_right = 1.0
+margin_top = 5.0
+custom_fonts/font = ExtResource( 5 )
+text = "Books:"
+align = 1
+valign = 1
+max_lines_visible = 1
+
+[node name="Books" type="GridContainer" parent="LeftSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 55.0
+margin_right = -6.0
+margin_bottom = -6.0
 mouse_filter = 2
 size_flags_horizontal = 3
+custom_constants/vseparation = 6
+custom_constants/hseparation = 6
+columns = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="0" type="Button" parent="LeftSide/Books"]
+margin_right = 66.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+pressed = true
+icon = SubResource( 5 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/0"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Simple"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="1" type="Button" parent="LeftSide/Books"]
+margin_left = 72.0
+margin_right = 138.0
+margin_bottom = 66.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 2 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BBQ"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="2" type="Button" parent="LeftSide/Books"]
+margin_top = 72.0
+margin_right = 66.0
+margin_bottom = 138.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 6 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cakes"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="3" type="Button" parent="LeftSide/Books"]
+margin_left = 72.0
+margin_top = 72.0
+margin_right = 138.0
+margin_bottom = 138.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 7 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/3"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Casserole"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="4" type="Button" parent="LeftSide/Books"]
+margin_top = 144.0
+margin_right = 66.0
+margin_bottom = 210.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 8 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/4"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Drinks"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="5" type="Button" parent="LeftSide/Books"]
+margin_left = 72.0
+margin_top = 144.0
+margin_right = 138.0
+margin_bottom = 210.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 9 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/5"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pasta"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="6" type="Button" parent="LeftSide/Books"]
+margin_top = 216.0
+margin_right = 66.0
+margin_bottom = 282.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 10 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/6"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pizza"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="7" type="Button" parent="LeftSide/Books"]
+margin_left = 72.0
+margin_top = 216.0
+margin_right = 138.0
+margin_bottom = 282.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 11 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/7"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Rice"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="8" type="Button" parent="LeftSide/Books"]
+margin_top = 288.0
+margin_right = 66.0
+margin_bottom = 354.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 12 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/8"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Soup"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="9" type="Button" parent="LeftSide/Books"]
+margin_left = 72.0
+margin_top = 288.0
+margin_right = 138.0
+margin_bottom = 354.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 13 )
+
+[node name="Label" type="Label" parent="LeftSide/Books/9"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Stews"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
 
 [node name="RightSide" type="Panel" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1246.0
-margin_top = 130.0
+margin_top = 127.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 123 )
 mouse_filter = 2
@@ -103,7 +449,7 @@ scroll_horizontal_enabled = false
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 1224.0
-margin_bottom = 503.0
+margin_bottom = 506.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

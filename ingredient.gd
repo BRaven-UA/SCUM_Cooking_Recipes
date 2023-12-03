@@ -1,4 +1,3 @@
-tool
 extends TextureProgress
 
 var _data: Dictionary
@@ -10,7 +9,8 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_texture_rect_region(DB.ATLAS, Rect2((rect_size - DB.ICON_SIZE) * 0.5, DB.ICON_SIZE), _data[DB.REGION])
 
-	var progress = "%s/%s%s" % [str(value), str(max_value), " L" if _data.get(DB.UNIT, 0) == DB.LITERS else ""]
+#	var progress = "%s/%s%s" % [str(value), str(max_value), " L" if _data.get(DB.UNIT, 0) == DB.LITERS else ""]
+	var progress = "%s%s" % [str(max_value), " L" if _data.get(DB.UNIT, 0) == DB.LITERS else ""]
 	draw_string(DB.DEFAULT_FONT, Vector2(5, 5 + DB.DEFAULT_FONT.get_height() * 0.5), progress)
 
 	var title = _data[DB.NAME]
@@ -22,14 +22,15 @@ func activate(data: Dictionary, amount: float):
 	update()
 
 func update(ingredient := _data):
-	value = min(ingredient.get(DB.AVAILABLE, 0) - ingredient.get(DB.USED, 0), max_value)
-	if value > 0:
+#	value = min(ingredient.get(DB.AVAILABLE, 0) - ingredient.get(DB.USED, 0), max_value)
+	value = ingredient.get(DB.AVAILABLE, 0) * max_value
+#	if value > 0:
 #		_data[DB.USED] = _data.get(DB.USED, 0) + value
-		ingredient[DB.USED] += value
+#		ingredient[DB.USED] += value
 #		tint_progress = Color.yellow if value < max_value else Color.green
-		tint_progress = Color.green
-	else:
-		tint_progress = Color.white
+#		tint_progress = Color.green
+#	else:
+#		tint_progress = Color.white
 	.update()
 
 func _on_ingredient_changed(ingredient: Dictionary):
