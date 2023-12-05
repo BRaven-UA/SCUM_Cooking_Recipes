@@ -41,27 +41,27 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
-region = Rect2( 256, 512, 64, 64 )
+region = Rect2( 896, 384, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
-region = Rect2( 320, 512, 64, 64 )
+region = Rect2( 960, 384, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
-region = Rect2( 384, 512, 64, 64 )
+region = Rect2( 640, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
-region = Rect2( 448, 512, 64, 64 )
+region = Rect2( 704, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
-region = Rect2( 512, 512, 64, 64 )
+region = Rect2( 768, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 3 )
-region = Rect2( 576, 512, 64, 64 )
+region = Rect2( 832, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
@@ -94,69 +94,46 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="TopSide" type="Panel" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-grow_horizontal = 2
-rect_min_size = Vector2( 0, 123 )
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Books" type="PanelContainer" parent="HBoxContainer"]
+margin_right = 101.0
+margin_bottom = 750.0
 mouse_filter = 2
 custom_styles/panel = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="TopSide"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 30.0
-grow_vertical = 2
-custom_fonts/font = ExtResource( 5 )
-text = "Ingredients:"
-valign = 1
-max_lines_visible = 1
-
-[node name="Ingredients" type="HBoxContainer" parent="TopSide"]
-anchor_left = 0.2
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 20.0
-margin_right = -140.0
-margin_bottom = -20.0
-grow_vertical = 2
-mouse_filter = 2
-custom_constants/separation = 25
-alignment = 1
-
-[node name="LeftSide" type="Panel" parent="."]
-anchor_bottom = 1.0
-margin_top = 127.0
-margin_right = 150.0
-mouse_filter = 2
-custom_styles/panel = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="LeftSide"]
-anchor_right = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Books"]
+margin_left = 5.0
 margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 745.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer"]
+margin_right = 91.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 5 )
 text = "Books:"
 align = 1
 valign = 1
 max_lines_visible = 1
 
-[node name="Books" type="GridContainer" parent="LeftSide"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 55.0
-margin_right = -6.0
-margin_bottom = -6.0
+[node name="List" type="VBoxContainer" parent="HBoxContainer/Books/VBoxContainer"]
+margin_left = 12.0
+margin_top = 52.0
+margin_right = 78.0
+margin_bottom = 739.0
 mouse_filter = 2
-size_flags_horizontal = 3
-custom_constants/vseparation = 6
-custom_constants/hseparation = 6
-columns = 2
+size_flags_horizontal = 4
+custom_constants/separation = 3
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="0" type="Button" parent="LeftSide/Books"]
+[node name="0" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
 margin_right = 66.0
 margin_bottom = 66.0
 focus_mode = 0
@@ -168,7 +145,7 @@ shortcut_in_tooltip = false
 pressed = true
 icon = SubResource( 5 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/0"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/0"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -181,10 +158,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="1" type="Button" parent="LeftSide/Books"]
-margin_left = 72.0
-margin_right = 138.0
-margin_bottom = 66.0
+[node name="1" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 69.0
+margin_right = 66.0
+margin_bottom = 135.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -193,7 +170,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 2 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/1"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/1"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -206,10 +183,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="2" type="Button" parent="LeftSide/Books"]
-margin_top = 72.0
+[node name="2" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 138.0
 margin_right = 66.0
-margin_bottom = 138.0
+margin_bottom = 204.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -218,7 +195,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 6 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/2"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/2"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -231,11 +208,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="3" type="Button" parent="LeftSide/Books"]
-margin_left = 72.0
-margin_top = 72.0
-margin_right = 138.0
-margin_bottom = 138.0
+[node name="3" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 207.0
+margin_right = 66.0
+margin_bottom = 273.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -244,7 +220,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 7 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/3"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/3"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -257,10 +233,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="4" type="Button" parent="LeftSide/Books"]
-margin_top = 144.0
+[node name="4" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 276.0
 margin_right = 66.0
-margin_bottom = 210.0
+margin_bottom = 342.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -269,7 +245,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 8 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/4"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/4"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -282,11 +258,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="5" type="Button" parent="LeftSide/Books"]
-margin_left = 72.0
-margin_top = 144.0
-margin_right = 138.0
-margin_bottom = 210.0
+[node name="5" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 345.0
+margin_right = 66.0
+margin_bottom = 411.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -295,7 +270,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 9 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/5"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/5"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -308,10 +283,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="6" type="Button" parent="LeftSide/Books"]
-margin_top = 216.0
+[node name="6" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 414.0
 margin_right = 66.0
-margin_bottom = 282.0
+margin_bottom = 480.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -320,7 +295,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 10 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/6"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/6"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -333,11 +308,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="7" type="Button" parent="LeftSide/Books"]
-margin_left = 72.0
-margin_top = 216.0
-margin_right = 138.0
-margin_bottom = 282.0
+[node name="7" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 483.0
+margin_right = 66.0
+margin_bottom = 549.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -346,7 +320,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 11 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/7"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/7"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -359,10 +333,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="8" type="Button" parent="LeftSide/Books"]
-margin_top = 288.0
+[node name="8" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 552.0
 margin_right = 66.0
-margin_bottom = 354.0
+margin_bottom = 618.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -371,7 +345,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 12 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/8"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/8"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -384,11 +358,10 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="9" type="Button" parent="LeftSide/Books"]
-margin_left = 72.0
-margin_top = 288.0
-margin_right = 138.0
-margin_bottom = 354.0
+[node name="9" type="Button" parent="HBoxContainer/Books/VBoxContainer/List"]
+margin_top = 621.0
+margin_right = 66.0
+margin_bottom = 687.0
 focus_mode = 0
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 3 )
@@ -397,7 +370,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 icon = SubResource( 13 )
 
-[node name="Label" type="Label" parent="LeftSide/Books/9"]
+[node name="Label" type="Label" parent="HBoxContainer/Books/VBoxContainer/List/9"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -410,49 +383,128 @@ valign = 2
 clip_text = true
 max_lines_visible = 1
 
-[node name="RightSide" type="Panel" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1246.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 105.0
+margin_right = 1268.0
+margin_bottom = 750.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="Ingredients" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+margin_right = 1163.0
+margin_bottom = 123.0
+grow_horizontal = 2
+rect_min_size = Vector2( 0, 123 )
+mouse_filter = 2
+custom_styles/panel = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Ingredients"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1158.0
+margin_bottom = 118.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Ingredients/VBoxContainer"]
+margin_left = 493.0
+margin_right = 659.0
+margin_bottom = 48.0
+grow_vertical = 2
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 5 )
+text = "Ingredients:"
+valign = 1
+max_lines_visible = 1
+
+[node name="Grid" type="GridContainer" parent="HBoxContainer/VBoxContainer/Ingredients/VBoxContainer"]
+margin_left = 576.0
+margin_top = 52.0
+margin_right = 576.0
+margin_bottom = 52.0
+grow_vertical = 2
+mouse_filter = 2
+size_flags_horizontal = 4
+custom_constants/vseparation = 5
+custom_constants/hseparation = 2
+columns = 9
+
+[node name="Recipes" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 127.0
+margin_right = 1163.0
+margin_bottom = 750.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 123 )
 mouse_filter = 2
+size_flags_vertical = 3
 custom_styles/panel = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Label" type="Label" parent="RightSide"]
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Recipes"]
+margin_left = 5.0
 margin_top = 5.0
+margin_right = 1158.0
+margin_bottom = 618.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer"]
+margin_left = 519.0
+margin_right = 634.0
+margin_bottom = 48.0
 grow_horizontal = 2
+size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 5 )
 text = "Recipes:"
 valign = 1
 max_lines_visible = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="RightSide"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 55.0
-margin_right = -10.0
-margin_bottom = -10.0
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer"]
+margin_top = 52.0
+margin_right = 1153.0
+margin_bottom = 613.0
 grow_horizontal = 0
+size_flags_vertical = 3
 custom_styles/bg = SubResource( 1 )
 scroll_horizontal_enabled = false
 
-[node name="Recipes" type="VBoxContainer" parent="RightSide/ScrollContainer"]
+[node name="List" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer/ScrollContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 1224.0
-margin_bottom = 506.0
+margin_right = 1151.0
+margin_bottom = 559.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Utilities" type="PanelContainer" parent="HBoxContainer"]
+margin_left = 1272.0
+margin_right = 1400.0
+margin_bottom = 750.0
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Utilities"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 123.0
+margin_bottom = 745.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2"]
+margin_right = 118.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 5 )
+text = "Utilities:"
+align = 1
+valign = 1
+max_lines_visible = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Utilities/VBoxContainer2"]
+margin_top = 52.0
+margin_right = 118.0
+margin_bottom = 52.0
+mouse_filter = 2
+custom_constants/separation = 2
 
 [node name="FoundList" type="ItemList" parent="."]
 visible = false

@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	if ingredient:
-		draw_texture_rect_region(DB.ATLAS, Rect2((rect_size - DB.ICON_SIZE) * 0.5, DB.ICON_SIZE), ingredient[DB.REGION])
+		draw_texture_rect_region(DB.ATLAS, Rect2((texture.get_size() - DB.ICON_SIZE) * 0.5, DB.ICON_SIZE), ingredient[DB.REGION])
 
 func set_ingredient(data: Dictionary):
 	if data.empty():
@@ -27,10 +27,11 @@ func set_ingredient(data: Dictionary):
 		_name_edit.set("custom_fonts/font", DB.DEFAULT_FONT)
 		ingredient = data # assign new link after applying changes to the old ingredient
 	else:
-		ingredient = data # assing new ling before applying changes
-		if DB.DEFAULT_FONT.get_string_size(data[DB.NAME]).x > _name_edit.rect_size.x:
+		ingredient = data # assign new link before applying changes
+		if DB.DEFAULT_FONT.get_string_size(data[DB.NAME]).x > rect_size.x - 18:
 			_name_edit.set("custom_fonts/font", DB.TINY_FONT)
 		_name_edit.text = data[DB.NAME]
+		_name_edit.margin_top = 0
 		_name_edit.caret_position = _name_edit.text.length()
 #		_amount_edit.suffix = "L" if data.get(DB.UNIT, DB.PIECES) == DB.LITERS else ""
 #		_amount_edit.step = 0.1 if data.get(DB.UNIT, DB.PIECES) == DB.LITERS else 1.0

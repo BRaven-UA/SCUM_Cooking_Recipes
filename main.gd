@@ -10,13 +10,13 @@ const SELECTION_TEMPLATE := preload("res://ingredient_selection.tscn")
 var _books := [true, false, false, false, false, false, false, false, false, false] # Current selected cookbooks
 var _ingredients: Array # Current selected ingredients
 var _current_selection: Control
-onready var _recipes = $RightSide/ScrollContainer/Recipes
-onready var _available_ingredients = $TopSide/Ingredients
+onready var _recipes = $HBoxContainer/VBoxContainer/Recipes/VBoxContainer/ScrollContainer/List
+onready var _available_ingredients = $HBoxContainer/VBoxContainer/Ingredients/VBoxContainer/Grid
 onready var _found_list = $FoundList
 
 
 func _ready() -> void:
-	for button in $LeftSide/Books.get_children():
+	for button in $HBoxContainer/Books/VBoxContainer/List.get_children():
 		button.connect("toggled", self, "_on_book_toggled", [button])
 	_found_list.connect("item_selected", self, "_on_search_item_selected")
 	
@@ -30,16 +30,16 @@ func _ready() -> void:
 			if ingredient.has(DB.GROUP):
 				ingredient[DB.REGION] = DB.get_icon_region(ingredient[DB.ICON])
 				for group_ingredient in ingredient[DB.GROUP]:
-					_add_to_all_ingredients(group_ingredient)
+					_add_to_used_ingredients(group_ingredient)
 			else:
-				_add_to_all_ingredients(ingredient)
+				_add_to_used_ingredients(ingredient)
 	
 #	_books = DEFAULT_BOOKS
 	_update_ingredients()
 
-func _add_to_all_ingredients(ingredient: Dictionary):
-	if not DB.ALL_INGREDIENTS.has(ingredient):
-		DB.ALL_INGREDIENTS.append(ingredient)
+func _add_to_used_ingredients(ingredient: Dictionary):
+	if not DB.USED_INGREDIENTS.has(ingredient):
+		DB.USED_INGREDIENTS.append(ingredient)
 		ingredient[DB.REGION] = DB.get_icon_region(ingredient[DB.ICON])
 
 func _update_ingredients():
@@ -72,7 +72,7 @@ func _on_search_string_changed(text: String, selection: Control):
 		var list_index := 0
 		_found_list.clear()
 		var lower_text = text.to_lower()
-		for ingredient in DB.ALL_INGREDIENTS:
+		for ingredient in DB.USED_INGREDIENTS:
 			if lower_text in ingredient[DB.NAME].to_lower():
 				_found_list.add_item(ingredient[DB.NAME], DB.ATLAS)
 				_found_list.set_item_icon_region(list_index, ingredient[DB.REGION])
