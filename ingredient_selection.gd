@@ -3,6 +3,7 @@ extends TextureRect
 signal search_string(text)
 
 var ingredient: Dictionary
+onready var include = $Include
 onready var _name_edit = $Name
 #onready var _amount_edit = $Amount
 #onready var _amount_line_edit = _amount_edit.get_line_edit()
@@ -26,6 +27,7 @@ func set_ingredient(data: Dictionary):
 #		_amount_edit.hide()
 		_name_edit.set("custom_fonts/font", DB.DEFAULT_FONT)
 		ingredient = data # assign new link after applying changes to the old ingredient
+		include.hide()
 	else:
 		ingredient = data # assign new link before applying changes
 		if DB.DEFAULT_FONT.get_string_size(data[DB.NAME]).x > rect_size.x - 18:
@@ -39,6 +41,9 @@ func set_ingredient(data: Dictionary):
 		ingredient[DB.AVAILABLE] = 1 # TODO: delete
 		DB.emit_signal("ingredient_changed", ingredient) # TODO: delete
 #		_amount_edit.show()
+		include.show()
+		include.pressed = true
+		ingredient[DB.INCLUDE] = true
 	update()
 	_name_edit.release_focus()
 

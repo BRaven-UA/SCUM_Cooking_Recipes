@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
@@ -87,6 +87,26 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 448, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 448, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 448, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 384, 448, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 512, 448, 128, 128 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -385,13 +405,13 @@ max_lines_visible = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 105.0
-margin_right = 1268.0
+margin_right = 1256.0
 margin_bottom = 750.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Ingredients" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
-margin_right = 1163.0
+margin_right = 1151.0
 margin_bottom = 123.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 123 )
@@ -401,13 +421,13 @@ custom_styles/panel = ExtResource( 6 )
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Ingredients"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1158.0
+margin_right = 1146.0
 margin_bottom = 118.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Ingredients/VBoxContainer"]
-margin_left = 493.0
-margin_right = 659.0
+margin_left = 487.0
+margin_right = 653.0
 margin_bottom = 48.0
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -417,9 +437,9 @@ valign = 1
 max_lines_visible = 1
 
 [node name="Grid" type="GridContainer" parent="HBoxContainer/VBoxContainer/Ingredients/VBoxContainer"]
-margin_left = 576.0
+margin_left = 570.0
 margin_top = 52.0
-margin_right = 576.0
+margin_right = 570.0
 margin_bottom = 52.0
 grow_vertical = 2
 mouse_filter = 2
@@ -430,7 +450,7 @@ columns = 9
 
 [node name="Recipes" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 127.0
-margin_right = 1163.0
+margin_right = 1151.0
 margin_bottom = 750.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 123 )
@@ -444,13 +464,13 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Recipes"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1158.0
+margin_right = 1146.0
 margin_bottom = 618.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer"]
-margin_left = 519.0
-margin_right = 634.0
+margin_left = 513.0
+margin_right = 628.0
 margin_bottom = 48.0
 grow_horizontal = 2
 size_flags_horizontal = 4
@@ -461,7 +481,7 @@ max_lines_visible = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer"]
 margin_top = 52.0
-margin_right = 1153.0
+margin_right = 1141.0
 margin_bottom = 613.0
 grow_horizontal = 0
 size_flags_vertical = 3
@@ -471,14 +491,14 @@ scroll_horizontal_enabled = false
 [node name="List" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/Recipes/VBoxContainer/ScrollContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 1151.0
+margin_right = 1139.0
 margin_bottom = 559.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Utilities" type="PanelContainer" parent="HBoxContainer"]
-margin_left = 1272.0
+margin_left = 1260.0
 margin_right = 1400.0
 margin_bottom = 750.0
 mouse_filter = 2
@@ -486,12 +506,12 @@ mouse_filter = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Utilities"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 123.0
+margin_right = 135.0
 margin_bottom = 745.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2"]
-margin_right = 118.0
+margin_right = 130.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 5 )
 text = "Utilities:"
@@ -501,10 +521,130 @@ max_lines_visible = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Utilities/VBoxContainer2"]
 margin_top = 52.0
-margin_right = 118.0
-margin_bottom = 52.0
+margin_right = 130.0
+margin_bottom = 714.0
 mouse_filter = 2
-custom_constants/separation = 2
+custom_constants/separation = 3
+
+[node name="0" type="Button" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer"]
+margin_right = 130.0
+margin_bottom = 130.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+pressed = true
+icon = SubResource( 15 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer/0"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Skewer"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="1" type="Button" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer"]
+margin_top = 133.0
+margin_right = 130.0
+margin_bottom = 263.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 16 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer/1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BBQ"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="2" type="Button" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer"]
+margin_top = 266.0
+margin_right = 130.0
+margin_bottom = 396.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 17 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer/2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pan"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="3" type="Button" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer"]
+margin_top = 399.0
+margin_right = 130.0
+margin_bottom = 529.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 18 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer/3"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Pot"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
+
+[node name="4" type="Button" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer"]
+margin_top = 532.0
+margin_right = 130.0
+margin_bottom = 662.0
+focus_mode = 0
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+shortcut_in_tooltip = false
+icon = SubResource( 19 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Utilities/VBoxContainer2/VBoxContainer/4"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Oven"
+align = 1
+valign = 2
+clip_text = true
+max_lines_visible = 1
 
 [node name="FoundList" type="ItemList" parent="."]
 visible = false

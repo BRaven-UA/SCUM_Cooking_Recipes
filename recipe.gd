@@ -31,14 +31,21 @@ func activate(data: Dictionary):
 	add_child(utility, true)
 	utility.activate(_data[DB.UTILITY])
 
-func _on_filter_changed(books: Array, ingredients: Array):
-#	visible = ingredients.empty()
-	if ingredients.empty() and books[_data[DB.COOKBOOK]]:
-		show()
-		return
-	else:
-		for ingredient in ingredients:
-			if ingredient in _ingredients_and_groups and books[_data[DB.COOKBOOK]]:
-				visible = true
-				return
+func _on_filter_changed(books: Array, utilities: Array, ingredients: Array):
+	if books[_data[DB.COOKBOOK]]:
+		for utility in _data[DB.UTILITY]:
+			if utilities[utility]:
+				if ingredients.empty():
+					show()
+					return
+				var has_inclusion := false
+				for ingredient in ingredients:
+					if ingredient in _ingredients_and_groups:
+						if ingredient[DB.INCLUDE] == false:
+							hide()
+							return
+						has_inclusion = true
+				if has_inclusion:
+					show()
+					return
 	hide()

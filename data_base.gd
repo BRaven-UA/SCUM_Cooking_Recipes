@@ -2,7 +2,7 @@ extends Node
 
 signal ingredient_changed(data)
 
-enum {NAME, ICON, UNIT, GROUP, INGREDIENTS, AMOUNT, OPTIONAL, UTILITY, TIME, COOKBOOK, REGION, AVAILABLE, USED} # Dictionary keys
+enum {NAME, ICON, UNIT, GROUP, INGREDIENTS, AMOUNT, OPTIONAL, UTILITY, TIME, COOKBOOK, REGION, AVAILABLE, USED, INCLUDE} # Dictionary keys
 enum {PIECES, LITERS} # Units
 enum {SKEWER, BBQ, PAN, POT, OVEN} # Utilities
 enum BOOK {SIMPLE, BBQ, CAKE, CASSEROLES, DRINKS, PASTA, PIZZA, RICE, SOUP, STEW} # Cookbooks. SIMPLE means no book required

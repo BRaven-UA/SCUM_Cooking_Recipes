@@ -1,6 +1,6 @@
 extends Control
 
-signal filter_changed(books, ingredients)
+signal filter_changed(books, utilities, ingredients)
 
 const RECIPE_TEMPLATE := preload("res://recipe.tscn")
 const SELECTION_TEMPLATE := preload("res://ingredient_selection.tscn")
@@ -8,6 +8,7 @@ const SELECTION_TEMPLATE := preload("res://ingredient_selection.tscn")
 
 #var _books: Array # Current selected cookbooks
 var _books := [true, false, false, false, false, false, false, false, false, false] # Current selected cookbooks
+var _utilities := [true, false, false, false, false] # Current selected utilities
 var _ingredients: Array # Current selected ingredients
 var _current_selection: Control
 onready var _recipes = $HBoxContainer/VBoxContainer/Recipes/VBoxContainer/ScrollContainer/List
@@ -17,7 +18,9 @@ onready var _found_list = $FoundList
 
 func _ready() -> void:
 	for button in $HBoxContainer/Books/VBoxContainer/List.get_children():
-		button.connect("toggled", self, "_on_book_toggled", [button])
+		button.connect("toggled", self, "_on_filter_button_toggled", [_books, button])
+	for button in $HBoxContainer/Utilities/VBoxContainer2/VBoxContainer.get_children():
+		button.connect("toggled", self, "_on_filter_button_toggled", [_utilities, button])
 	_found_list.connect("item_selected", self, "_on_search_item_selected")
 	
 	for data in DB.RECIPES:
@@ -58,12 +61,14 @@ func _update_ingredients():
 		var selection = SELECTION_TEMPLATE.instance()
 		selection.connect("search_string", self, "_on_search_string_changed", [selection])
 		_available_ingredients.add_child(selection, true)
-	emit_signal("filter_changed", _books, _ingredients)
+		selection.include.connect("toggled", self, "_on_include_changed", [selection])
+	emit_signal("filter_changed", _books, _utilities, _ingredients)
 
-func _on_book_toggled(pressed: bool, button: Button):
-	_books[button.name as int] = pressed
-#	button.set("custom_styles/hover", button.get("custom_styles/%s" % "pressed" if pressed else "normal"))
-	emit_signal("filter_changed", _books, _ingredients)
+# When one of filter buttons (books or utilities) was toggled
+func _on_filter_button_toggled(pressed: bool, array: Array, button: Button):
+	array[button.name as int] = pressed
+	button.set("custom_styles/hover", button.get("custom_styles/%s" % "pressed" if pressed else "normal"))
+	emit_signal("filter_changed", _books, _utilities, _ingredients)
 
 func _on_search_string_changed(text: String, selection: Control):
 	_found_list.hide()
@@ -92,3 +97,7 @@ func _on_search_item_selected(index: int):
 	_found_list.hide()
 	_current_selection.set_ingredient(_found_list.get_item_metadata(index))
 	_update_ingredients()
+
+func _on_include_changed(included: bool, selection: Control):
+	selection.ingredient[DB.INCLUDE] = included
+	emit_signal("filter_changed", _books, _utilities, _ingredients)

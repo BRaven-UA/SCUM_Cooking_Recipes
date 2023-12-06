@@ -29,7 +29,7 @@ gdscript/warnings/integer_division=false
 
 [display]
 
-window/size/width=1400
+window/size/width=1200
 window/size/height=750
 window/energy_saving/keep_screen_on=false
 
